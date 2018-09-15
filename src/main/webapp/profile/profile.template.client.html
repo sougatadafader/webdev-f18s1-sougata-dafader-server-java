@@ -1,0 +1,88 @@
+<!--Author: Sougata Dafader-->
+<!--Created for Web Development Coursework-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Profile</h1>
+	</div>
+	<div class="container">
+		<form>
+			<!--Username Field Starts-->
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">Username </label>
+				<div class="col-sm-10">
+					<input class="form-control" id="username" placeholder="Alice" readonly>
+				</div>
+			</div>
+			<!--Username Field Ends-->
+
+			<!--Phone Field Starts-->
+			<div class="form-group row">
+				<label for="phone" class="col-sm-2 col-form-label">Phone </label>
+				<div class="col-sm-10">
+					<input  type="tel" class="form-control" id="phone" placeholder="xxx-xxx-xxxx (Enter only Numbers)" maxlength="10">
+				</div>
+			</div>
+			<!--Phone Field Ends-->
+
+			<!--Email Field Starts-->
+			<div class="form-group row">
+				<label for="email" class="col-sm-2 col-form-label">Email ID </label>
+				<div class="col-sm-10">
+					<input  type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+				</div>
+			</div>
+			<!--Email Field Ends-->
+
+
+			<!--Role Field Starts-->
+			<div class="form-group row">
+				<label for="role" class="col-sm-2 col-form-label">Role </label>
+				<div class="col-sm-10">
+					<select id="role" class="form-control">
+						<option value="faculty">Faculty</option>
+						<option value="student">Student</option>
+						<option value="admin">Admin</option>
+					</select>
+				</div>
+			</div>
+			<!--Role Field Ends-->
+
+			<!--Date Field Starts-->
+			<div class="form-group row">
+				<label for="dob" class="col-sm-2 col-form-label">Date of Birth</label>
+				<div class="col-sm-10">
+					<input  type="date" class="form-control" id="dob" placeholder="mm/dd/yyyy">
+				</div>
+			</div>
+			<!--Date Field Ends-->
+
+			<!--Update Button Starts-->
+			<div class="form-group row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-10">
+					<button class="btn btn-success btn-block">Update</button>
+				</div>
+			</div>
+			<!--Update Button Ends-->
+
+			<!--Logout Button Starts-->
+			<div class="form-group row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-10">
+					<button class="btn btn-danger btn-block">Logout</button>
+				</div>
+			</div>
+			<!--Logout Button Ends-->
+		</form>
+	</div>
+</body>
+</html>
