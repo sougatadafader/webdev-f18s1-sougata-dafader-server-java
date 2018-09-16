@@ -37,7 +37,7 @@
 					<input class="form-control" id="CrTitle" placeholder="New Course Title">
 				</div>
 				<div class="col-md-2 col-sm-3">
-					<button onclick="myFunction()" 	 ><i class="fas fa-2x btn btn-danger btn-round fa-plus"></i></button>
+					<button onclick="myFunction()" 	class="btn-remove_bound" ><i class="fas fa-2x btn btn-danger btn-round fa-plus"></i></button>
 				</div>
 			</div>
 		</nav>
@@ -80,12 +80,12 @@ function myFunction() {
     var icon_cross = '<i class="material-icons">close</i>';
     if(title)
    	{
-   		cell1.innerHTML= String(icon_doc) + " " + String(title);
+   		cell1.innerHTML= String(icon_doc) + " <span class='course_title'>" + String(title)+"</span>";
    		
    	}
    	else
    	{
-   		cell1.innerHTML = "New Course";
+   		cell1.innerHTML = String(icon_doc) + " <span class='course_title'>New Course</span>";
    	}
     cell2.innerHTML = "Me";
     cell3.innerHTML = new Date();

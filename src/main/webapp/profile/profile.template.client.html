@@ -10,13 +10,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="container">
 		<h1>Profile</h1>
 	</div>
 	<div class="container">
-		<form>
+		<div id="pop_success" class="alert alert-success d-none" role="alert">
+  			Profile Successfully Saved!
+		</div>
+		<form id="form_prof">
+
 			<!--Username Field Starts-->
 			<div class="form-group row">
 				<label for="username" class="col-sm-2 col-form-label">Username </label>
@@ -80,11 +88,18 @@
 			<div class="form-group row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
-					<button class="btn btn-danger btn-block">Logout</button>
+					<a class="btn btn-danger btn-block" href="../home/home.template.client.html">Logout</a>
 				</div>
 			</div>
 			<!--Logout Button Ends-->
 		</form>
 	</div>
+	<script type="text/javascript">
+		$('#form_prof').submit(function(evt)
+		{
+			evt.preventDefault();
+			$('#pop_success').removeClass('d-none');
+		});
+	</script>
 </body>
 </html>

@@ -10,3 +10,7 @@
 .pad-left-10{
 	padding-left: 10rem!important;
 }
+.btn-remove_bound{
+	background: none !important;
+    border: none !important;
+}
