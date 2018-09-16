@@ -1,0 +1,12 @@
+.navbar-dark .navbar-toggler {
+	border-color: rgba(255,255,255,.5);
+}
+.add-button{
+	color: red;
+}
+.btn-round{
+	border-radius: 50% !important;
+}
+.pad-left-10{
+	padding-left: 10rem!important;
+}
