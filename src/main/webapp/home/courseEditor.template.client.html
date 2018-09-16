@@ -1,0 +1,335 @@
+<!--Author: Sougata Dafader-->
+<!--Home Page-->
+<!--Created for Web Development Coursework-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Course Editor</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="home.style.client.css">
+	<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style type="text/css">
+	.p10
+	{
+		padding-top:10px;
+		padding-bottom: 10px;
+	}
+	.course-cancel
+	{
+		font-size: 1rem;
+		position: relative;
+		top: 3px;
+	}
+	.module_container
+	{
+		padding:5px;
+	}
+	.module
+	{
+		position:relative;
+		padding-left:15px;
+		padding-top:8px;
+		padding-bottom:8px;
+		padding-right:8px;
+		background:#4b5154;
+		margin-top:15px;
+	}
+	.module.selected
+	{
+		background:#2a90ea;
+	}
+	.module i,
+	.module-adder a
+	{
+		position:absolute;
+		top:50%;
+		right:0px;
+		transform:translateY(-50%);
+		-webkit-transform:translateY(-50%);
+		-moz-transform:translateY(-50%);
+		-ms-transform:translateY(-50%);
+		-o-transform:translateY(-50%);
+	}
+	.module-adder
+	{
+		position:relative;
+		margin-top:15px;
+		margin-bottom:15px;
+	}
+	.module-adder input
+	{
+		width:90%;
+	}
+	.main-container
+	{
+		margin-top:10px;
+	}
+	.module-adder-container
+	{
+		padding:5px;
+	}
+	.topic-adder h3
+	{
+		display: inline-block !important;
+	}
+	.topic-adder
+	{
+		position:relative;
+		top:-2px;
+		left:5px;
+	}
+	.nav-pills
+	{
+		margin-top:10px;
+	}
+	.nav-pills .nav-item
+	{
+		margin-right:8px;
+	}
+	.widget-container
+	{
+		min-height:200px;
+		position:relative;
+	}
+	.widget-container button
+	{
+		position:absolute;
+		right:0px;
+		bottom:0px;
+	}
+	.widget-heading
+	{
+		padding-right:5px;
+		position:relative;
+
+	}
+	.widget-changer
+	{
+		position:absolute;
+		top:0px;
+		right:0px;
+	}
+	.widget-changer select
+	{
+		width:100px;
+	}
+	.widget-changer button
+	{
+		position:relative;
+		left:5px;
+	}
+</style>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="handlebars.js"></script>
+<script type="text/x-handlebars-template" id="widget-template">
+	<div class="widget-container">
+		<div class="widgets"></div>
+		<button class="btn btn-danger" id="add-widget"><i class="fas fa-plus"></i></button>
+	</div>
+</script>
+<script type="text/x-handlebars-template" id="widget-add-template">
+	<div class="new-widget">
+		<div class="widget-heading">
+			<h3 id="widg-heading-{{guid}}">Heading Widget</h3>
+			<div class="widget-changer">
+				<select id="change-widget-{{guid}}">
+					<option value="heading" data-head="Heading Widget">Heading</option>
+					<option value="paragraph" data-head="Paragraph Widget">Paragraph</option>
+					<option value="list" data-head="List Widget">List</option>
+					<option value="image" data-head="Image Widget">Image</option>
+				</select>
+				<button class="btn btn-danger del-widget"><i class="material-icons">close</i></button>
+			</div>
+		</div>
+		<div class="widgu" id="heading-{{guid}}">
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">
+				Heading Text</label>
+				<div class="col-sm-10">
+					<input class="form-control" class="head-text" id="text-{{guid}}" placeholder="Alice" required data-preview="hprev-{{guid}}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">
+				Heading Size</label>
+				<div class="col-sm-10">
+					<select class="form-control" required data-preview="hprev-{{guid}}" id="size-{{guid}}">
+						<option value="h1">Heading 1</option>
+						<option value="h2">Heading 2</option>
+						<option value="h3">Heading 3</option>
+						<option value="h4">Heading 4</option>
+						<option value="h5">Heading 5</option>
+						<option value="h6">Heading 6</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">
+				Widget Name</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Widget Name" required>
+				</div>
+			</div>
+			<h2>PREVIEW</h2>
+			<div class="heading-preview" id="hprev-{{guid}}"></div>
+		</div>
+		<div class="widgu d-none" id="paragraph-{{guid}}">
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">
+				Paragraph Text</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" class="head-text" id="ptext-{{guid}}" placeholder="Alice" required data-preview="pprev-{{guid}}"></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="username" class="col-sm-2 col-form-label">
+				Widget Name</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Widget Name" required>
+				</div>
+			</div>
+			<h2>PREVIEW</h2>
+			<p class="heading-preview" id="pprev-{{guid}}"></p>
+		</div>
+		
+	</div>
+</script>
+</head>
+<body>
+	<div class="container-fluid table-dark p10">
+		<div class="row">
+			<div class="col-md-5">
+				<i class="material-icons course-cancel">close</i><span id="course_name">Course Name</span>
+			</div>
+			<div class="col-md-1">Build</div>
+			<div class="col-md-1">Pages</div>
+			<div class="col-md-1">Theme</div>
+			<div class="col-md-1">Store</div>
+			<div class="col-md-1">Apps</div>
+			<div class="col-md-1">Settings</div>
+			<div class="col-md-1"><i class="fas fa-plus"></i></div>
+		</div>
+		
+	</div>
+	<div class="container-fluid main-container">
+		<div class="row">
+			<div class="col-md-4 table-dark">
+				<div class="module_container" id="module_container">
+					
+				</div>
+				<div class="module-adder-container">
+					<div class="module-adder"><input type="text" id="module-add" placeholder="Module Name" /><a href="#" class="add-module"><i class="fas fa-plus"></i></a></div>
+				</div>
+
+			</div>
+			<div class="col-md-8">
+				<div class="topic-adder">
+					<h3>Add Topic</h3>
+					<button class="btn topic-adder-btn"><i class="fas fa-plus"></i></button>
+				</div>
+				<div class="topics">
+					<ul class="nav nav-pills">
+					</ul>
+				</div>
+				<div class="topic-widgets" id="topic-widgets">
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+	function guid() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+			.toString(16)
+			.substring(1);
+		}
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+		s4() + '-' + s4() + s4() + s4();
+	}
+	$('.add-module').click(function(evt)
+	{
+		evt.preventDefault();
+		var module_name = 'New Module';
+		var inp_name = $('#module-add').val();
+		if(inp_name != '')
+		{
+			module_name = inp_name;
+		}
+		var html_add = '<div class="module">'+module_name+'<i class="material-icons">close</i></div>';
+		$('#module_container').append(html_add);
+	});
+	$('.topic-adder-btn').click(function(evt){
+		evt.preventDefault();
+		//alert('Called');
+		var len = $('.nav-pills li').length;
+		len++;
+		var topic = 'Topic '+len;
+		var topic_html = $('<li class="nav-item"><a class="nav-link btn btn-dark" href="#">'+topic+'</a></li>');
+		$('.nav-pills').append(topic_html);
+		topic_html.click(function(){
+			var src= $('#widget-template').html();
+			var tmp = Handlebars.compile(src);
+			$('#topic-widgets').html(tmp());
+			$('#add-widget').click(function(evt){
+				evt.preventDefault();
+				var src = $('#widget-add-template').html();
+				var tmp = Handlebars.compile(src);
+				var uuid = guid();
+				var el = {guid:uuid};
+				$('.widgets').append(tmp(el));
+				$('.del-widget').click(function(evt){
+
+					evt.preventDefault();
+					var el = $(this);
+					el.closest('.new-widget').remove();
+				});
+				$('#change-widget-'+uuid).change(function(){
+					var el = $(this);
+					//alert('Function called');
+					$('.widgu').each(function(){
+						var th = $(this);
+						if(!th.hasClass('d-none'))
+						{
+							th.addClass('d-none');
+						}
+					});
+					var val = el.val();
+					//alert(val);
+					$('#'+val+'-'+uuid).removeClass('d-none');
+					var heading = $('#change-widget-'+uuid+' option[value="'+val+'"]').attr('data-head');
+					$('#widg-heading-'+uuid).html(heading);
+				});
+				$('#text-'+uuid).change(function(){
+					var el = $('#text-'+uuid);
+					var val = el.val();
+					var preview = el.attr('data-preview');
+					var size = $('#size-'+uuid).val();
+					var preview_html = '<'+size+'>'+val+'</'+size+'>';
+					//alert(preview_html);
+					$('#'+preview).html(preview_html);
+				});
+				$('#size-'+uuid).change(function(){
+					$('#text-'+uuid).trigger('change');
+				});
+				$('#ptext-'+uuid).change(function(){
+						var val = $(this).val();
+						$('#pprev-'+uuid).html(val);
+				});
+			});
+		});
+	});
+</script>
+</body>
+</html>
