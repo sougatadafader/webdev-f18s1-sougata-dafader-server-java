@@ -153,16 +153,19 @@ crossorigin="anonymous"></script>
 					<option value="paragraph" data-head="Paragraph Widget">Paragraph</option>
 					<option value="list" data-head="List Widget">List</option>
 					<option value="image" data-head="Image Widget">Image</option>
+					<option value="link" data-head="Link Widget">Link</option>
 				</select>
 				<button class="btn btn-danger del-widget"><i class="material-icons">close</i></button>
 			</div>
 		</div>
+
+		<!--Heading widget starts here-->
 		<div class="widgu p-3" id="heading-{{guid}}">
 			<div class="form-group row">
 				<label for="text-{{guid}}" class="col-sm-2 col-form-label">
 				Heading Text</label>
 				<div class="col-sm-10">
-					<input class="form-control" class="head-text" id="text-{{guid}}" placeholder="Alice" required data-preview="hprev-{{guid}}">
+					<input class="form-control" class="head-text" id="text-{{guid}}" placeholder="Some Heading" required data-preview="hprev-{{guid}}">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -189,12 +192,15 @@ crossorigin="anonymous"></script>
 			<h2>PREVIEW</h2>
 			<div class="heading-preview" id="hprev-{{guid}}"></div>
 		</div>
+		<!--Heading widget ends here-->
+
+		<!--Paragraph Widget starts here-->
 		<div class="widgu d-none p-3" id="paragraph-{{guid}}">
 			<div class="form-group row">
 				<label for="ptext-{{guid}}" class="col-sm-2 col-form-label">
 				Paragraph Text</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" class="head-text" id="ptext-{{guid}}" placeholder="Alice" required data-preview="pprev-{{guid}}"></textarea>
+					<textarea class="form-control" class="head-text" id="ptext-{{guid}}" placeholder="Some Paragraph" required data-preview="pprev-{{guid}}"></textarea>
 				</div>
 			</div>
 			
@@ -208,19 +214,51 @@ crossorigin="anonymous"></script>
 			<h2>PREVIEW</h2>
 			<p class="heading-preview" id="pprev-{{guid}}"></p>
 		</div>
+		<!--Paragraph Widget ends here-->
+
+		<!--Link Widget starts here-->
+		<div class="widgu d-none p-3" id="link-{{guid}}">
+			<div class="form-group row">
+				<label for="linkurl-{{guid}}" class="col-sm-2 col-form-label">
+				Link URL</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="url" class="head-text" id="linkurl-{{guid}}" placeholder="Some Link" value="#" required data-preview="linkprev-{{guid}}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="linktext-{{guid}}" class="col-sm-2 col-form-label">
+				Link Text</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" class="head-text" id="linktext-{{guid}}" placeholder="Some Link" value="Link Text" required data-preview="linkprev-{{guid}}">
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="link_widname" class="col-sm-2 col-form-label">
+				Widget Name</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="link_widname" placeholder="Widget Name" required>
+				</div>
+			</div>
+			<h2>PREVIEW</h2>
+			<a class="heading-preview" id="linkprev-{{guid}}"></a>
+		</div>
+		<!--Link Widget ends here-->
+
+		<!--List Widget starts here-->
 		<div class="widgu d-none p-3" id="list-{{guid}}">
 			<div class="form-group row">
 				<label for="username" class="col-sm-2 col-form-label">
 				List Text</label>
 				<div class="col-sm-10">
-					<input class="form-control" class="head-text" id="ltext-{{guid}}" placeholder="List placeholder" required data-preview="lprev-{{guid}}">
+					<textarea class="form-control" class="head-text" id="ltext-{{guid}}" placeholder="List placeholder" required data-preview="lprev-{{guid}}"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="username" class="col-sm-2 col-form-label">
 				List type</label>
 				<div class="col-sm-10">
-					<select class="form-control" required data-preview="lprev-{{guid}}" id="lsize-{{guid}}">
+					<select class="form-control" required data-preview="lprev-{{guid}}" id="ltype-{{guid}}">
 						<option value="ul">Unordered List</option>
 						<option value="ol">Ordered List</option>
 					</select>
@@ -236,12 +274,15 @@ crossorigin="anonymous"></script>
 			<h2>PREVIEW</h2>
 			<div class="heading-preview" id="lprev-{{guid}}"></div>
 		</div>
+		<!--List Widget ends here-->
+
+		<!--Image Widget starts here-->
 		<div class="widgu d-none p-3" id="image-{{guid}}">
 			<div class="form-group row">
 				<label for="itext-{{guid}}" class="col-sm-2 col-form-label">
 				Image Url</label>
 				<div class="col-sm-10">
-					<input class="form-control" class="head-text" id="itext-{{guid}}" placeholder="Alice" required data-preview="iprev-{{guid}}">
+					<input class="form-control" class="head-text" id="itext-{{guid}}" placeholder="www.abc.xyz" type="url" required data-preview="iprev-{{guid}}">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -252,17 +293,32 @@ crossorigin="anonymous"></script>
 				</div>
 			</div>
 			<h2>PREVIEW</h2>
-			<div class="heading-preview" id="iprev-{{guid}}"></div>
+			<img src="" id="iprev-{{guid}}" class="heading-preview img-responsive" alt="Image">
 		</div>
+		<!--Image Widget ends here-->
 		
 	</div>
+</script>
+<script type="text/x-handlebars-template" id="ol-template">
+	<ol>
+		{{#items}}
+		<li>{{itemname}}</li>
+		{{/items}}
+	</ol>
+</script>
+<script type="text/x-handlebars-template" id="ul-template">
+	<ul>
+		{{#items}}
+		<li>{{itemname}}</li>
+		{{/items}}
+	</ul>
 </script>
 </head>
 <body>
 	<div class="container-fluid bg-dark navbar-dark p10">
 		<div class="row">
 			<div class="col-md-5">
-				<i class="material-icons course-cancel text-white">close</i><span id="course_name" class="pl-4 text-white">Course Name</span>
+				<a href="#"><i class="material-icons course-cancel text-white">close</i></a><span id="course_name" class="pl-4 text-white">Course Name</span>
 			</div>
 			<div class="col-md-1 text-white">Build</div>
 			<div class="col-md-1 text-white">Pages</div>
@@ -311,6 +367,13 @@ crossorigin="anonymous"></script>
 		return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
 		s4() + '-' + s4() + s4() + s4();
 	}
+	var course_name = window.location.hash;
+	if(course_name !='')
+	{
+		course_name = course_name.replace('#','');
+		course_name = course_name.replace(/%20/g,' ')
+		$('#course_name').html(course_name);
+	}
 	$('.add-module').click(function(evt)
 	{
 		evt.preventDefault();
@@ -320,8 +383,13 @@ crossorigin="anonymous"></script>
 		{
 			module_name = inp_name;
 		}
-		var html_add = '<div class="module">'+module_name+'<i class="material-icons pr-3">close</i></div>';
+		var html_add = '<div class="module">'+module_name+'<a href="#"><i class="material-icons pr-3">close</i></a></div>';
 		$('#module_container').append(html_add);
+		$('.module').click(function(){
+			var el = $(this);
+			$('.module.selected').removeClass('selected');
+			el.addClass('selected');
+		});
 	});
 	$('.topic-adder-btn').click(function(evt){
 		evt.preventDefault();
@@ -379,6 +447,43 @@ crossorigin="anonymous"></script>
 				$('#ptext-'+uuid).change(function(){
 						var val = $(this).val();
 						$('#pprev-'+uuid).html(val);
+				});
+				$('#linktext-'+uuid).change(function(){
+					var linktext = $('#linktext-'+uuid).val();
+					var linkurl = $('#linkurl-'+uuid).val();
+					$('#linkprev-'+uuid).html(linktext).attr('href',linkurl);
+				});
+				$('#linkurl-'+uuid).change(function(){
+					$('#linktext-'+uuid).trigger('change');
+				});
+				$('#linktext-'+uuid).trigger('change');
+				$('#itext-'+uuid).change(function(){
+					var img_link = 'https://img23.pixhost.to/images/247/82178283_noimage_thumbnail_120x92_v2.png';
+					var val = $(this).val();
+					if(val != '')
+					{
+						img_link = val;
+					}
+					$('#iprev-'+uuid).attr('src',img_link);
+				});
+				$('#itext-'+uuid).trigger('change');
+				$('#ltext-'+uuid).change(function()
+				{
+					var list = $('#ltext-'+uuid).val();
+					var arr = list.split('\n');
+					var obj = {items:[]};
+					for(var i=0;i<arr.length;i++)
+					{
+						var item = {itemname:arr[i]};
+						obj.items.push(item);
+					}
+					var type = $('#ltype-'+uuid).val();
+					var src = $('#'+type+'-template').html();
+					var tmp = Handlebars.compile(src);
+					$('#lprev-'+uuid).html(tmp(obj));
+				});
+				$('#ltype-'+uuid).change(function(){
+					$('#ltext-'+uuid).trigger('change');
 				});
 			});
 		});
