@@ -1,5 +1,5 @@
-
-function User(username, password, firstName, lastName,role) {
+/* username, password, email, firstName, lastName, phone, role, and dateOfBirth*/
+function User(username, password, email, firstName, lastName, phone, role,dateOfBirth ) {
   this.username = username;
   this.password = password;
   // ...same for rest of properties…
