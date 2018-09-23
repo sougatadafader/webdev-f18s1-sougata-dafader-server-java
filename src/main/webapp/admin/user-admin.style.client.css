@@ -1,3 +1,14 @@
 .wbdv-hidden{
 	display: none;
 }
+.primary{
+	color:#337ab7;
+}
+
+.accepted{
+	color:green;
+}
+
+.danger{
+	color: red;
+}

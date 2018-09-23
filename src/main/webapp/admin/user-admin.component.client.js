@@ -56,7 +56,7 @@
     			tr.append("<td class='wbdv-first-name'>" + json[i].firstName + "</td>");
     			tr.append("<td class='wbdv-last-name'>" + json[i].lastName + "</td>");
     			tr.append("<td class='wbdv-role'>" + json[i].role + "</td>");
-    			tr.append("<td class='wbdv-actions'><span class='float-right'><i class='fa-2x fa fa-times wbdv-remove'></i><i class='fa-2x fa fa-pencil wbdv-edit'></i></span></td>");
+    			tr.append("<td class='wbdv-actions'><span class='float-right'><i class='fa-2x fa fa-times wbdv-remove danger'></i><i class='pl-3 fa-2x fa fa-pencil wbdv-edit primary'></i></span></td>");
     			$('table').append(tr);
     			tr
     			.attr('data-username',json[i].username)
@@ -64,7 +64,7 @@
     			.attr('data-email',json[i].email)
     			.attr('data-firstName',json[i].firstName)
     			.attr('data-lastName',json[i].lastName)
-    			.attr('data-role',json[i].role);
+    			.attr('data-role',json[i].role); 
     			var timestamp = (new Date().getTime());
     			tr.find(".wbdv-remove")
     			.attr("id",timestamp-(i*1000));
