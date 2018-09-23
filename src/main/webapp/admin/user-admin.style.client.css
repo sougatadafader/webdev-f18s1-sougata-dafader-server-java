@@ -3,6 +3,7 @@
 }
 .primary{
 	color:#337ab7;
+	cursor: pointer;
 }
 
 .accepted{
@@ -11,4 +12,5 @@
 
 .danger{
 	color: red;
+	cursor: pointer;
 }
