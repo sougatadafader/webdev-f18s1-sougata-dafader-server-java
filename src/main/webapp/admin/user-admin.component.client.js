@@ -226,9 +226,7 @@
 
     function searchUsers()
     {
-    	
-		//alert('Clicked');
-		var selector = '.wbdv-template';
+    	var selector = '.wbdv-template';
 		var username = $usernameFld.val();
 		//console.log(username);
 		if(username != '')
