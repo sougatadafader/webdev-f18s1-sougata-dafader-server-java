@@ -220,6 +220,7 @@
     		.attr('data-lastName',$lastNameFld.val())
     		.attr('data-role',$roleFld.val());
     		clearForm();
+            currentrow = "0";
     	}
 
     }
